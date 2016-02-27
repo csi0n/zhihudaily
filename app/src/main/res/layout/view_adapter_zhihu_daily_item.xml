@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="70dp"
+    android:orientation="horizontal">
+
+    <com.csi0n.zhihudaily.ui.widget.RoundImageView
+        android:id="@+id/ri_head"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="11dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="11dp"
+        android:text="我是文本"
+        android:textColor="@color/normal_gray"
+        android:textSize="@dimen/text_small_size" />
+
+</LinearLayout>
