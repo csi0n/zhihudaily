@@ -1,6 +1,6 @@
 package com.csi0n.zhihudaily.utils;
 
-import com.csi0n.zhihudaily.utils.model.ZhihuDetail;
+import com.csi0n.zhihudaily.utils.model.response.ZhihuDetail;
 
 import java.util.List;
 

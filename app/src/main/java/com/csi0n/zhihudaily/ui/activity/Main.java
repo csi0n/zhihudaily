@@ -12,27 +12,32 @@ import com.csi0n.zhihudaily.R;
 import com.csi0n.zhihudaily.controller.MainController;
 import com.csi0n.zhihudaily.ui.fragment.BaseFragment;
 import com.csi0n.zhihudaily.ui.fragment.TianQiFragment;
-import com.csi0n.zhihudaily.ui.fragment.ZhiHuDailyFragment;
+import com.csi0n.zhihudaily.ui.fragment.ZhihuDailyFragment2;
 
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.ViewInject;
+import butterknife.Bind;
 
-@ContentView(R.layout.aty_main)
 public class Main extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    @ViewInject(value = R.id.toolbar)
-    private Toolbar toolbar;
-    @ViewInject(value = R.id.drawer_layout)
-    private DrawerLayout drawer;
-    @ViewInject(value = R.id.nav_view)
-    private NavigationView navigationView;
+    @Bind(value = R.id.toolbar)
+     Toolbar toolbar;
+    @Bind(value = R.id.drawer_layout)
+     DrawerLayout drawer;
+    @Bind(value = R.id.nav_view)
+     NavigationView navigationView;
     private MainController mMainController;
-    private ZhiHuDailyFragment mZhiHuDailyFragment;
+    //private ZhiHuDailyFragment mZhiHuDailyFragment;
+    private ZhihuDailyFragment2 mZhihuDailyFragment2;
     private TianQiFragment mTianQiFragment;
 
     @Override
+    protected void setRootView() {
+        setContentView(R.layout.aty_main);
+    }
+
+    @Override
     protected void initWidget() {
-        mZhiHuDailyFragment = new ZhiHuDailyFragment();
+        //mZhiHuDailyFragment = new ZhiHuDailyFragment();
         mTianQiFragment = new TianQiFragment();
+        mZhihuDailyFragment2 = new ZhihuDailyFragment2();
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -40,7 +45,7 @@ public class Main extends BaseActivity implements NavigationView.OnNavigationIte
         navigationView.setNavigationItemSelectedListener(this);
         mMainController = new MainController(this);
         mMainController.initMain();
-        changeFragment(mZhiHuDailyFragment);
+        changeFragment(mZhihuDailyFragment2);
     }
 
     @Override
@@ -68,6 +73,7 @@ public class Main extends BaseActivity implements NavigationView.OnNavigationIte
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -81,15 +87,18 @@ public class Main extends BaseActivity implements NavigationView.OnNavigationIte
 
         if (id == R.id.nav_zihudaily) {
             // Handle the camera action
-            changeFragment(mZhiHuDailyFragment);
+            changeFragment(mZhihuDailyFragment2);
         } else if (id == R.id.nav_tianqi) {
             changeFragment(mTianQiFragment);
         } else if (id == R.id.nav_setting) {
 
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void startSetting() {
+
     }
 
     public void changeFragment(BaseFragment targetFragment) {

@@ -1,11 +1,9 @@
 package com.csi0n.zhihudaily.controller;
 
-import android.text.TextUtils;
 import android.view.View;
 
 import com.csi0n.zhihudaily.utils.StringUtils;
 
-import org.xutils.x;
 
 /**
  * Created by chqss on 2016/2/27 0027.

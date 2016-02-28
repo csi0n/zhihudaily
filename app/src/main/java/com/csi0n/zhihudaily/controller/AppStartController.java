@@ -4,9 +4,14 @@ import android.os.AsyncTask;
 import android.view.View;
 
 import com.csi0n.zhihudaily.Config;
-import com.csi0n.zhihudaily.api.ZhihuApi;
+import com.csi0n.zhihudaily.domain.ZhihuDomain;
+import com.csi0n.zhihudaily.domain.impl.ZhihuDomainImpl;
 import com.csi0n.zhihudaily.ui.activity.AppStart;
-import com.csi0n.zhihudaily.utils.model.ZhihuStartInfo;
+import com.csi0n.zhihudaily.utils.AdvancedSubscriber;
+import com.csi0n.zhihudaily.utils.model.response.ZhihuStartInfo;
+import com.google.inject.Inject;
+
+import rx.Observable;
 
 /**
  * Created by chqss on 2016/2/27 0027.
@@ -17,11 +22,25 @@ public class AppStartController extends BaseController {
 
     public AppStartController(AppStart appStart) {
         this.mAppStart = appStart;
+        zhihuDomain = new ZhihuDomainImpl();
+    }
+
+    // @Inject
+    private ZhihuDomain zhihuDomain;
+
+    public Observable<ZhihuStartInfo> doGetStartInfo() {
+        return zhihuDomain.getStartInfo(1080, 1776);
     }
 
     public void initAppStart() {
-        ZhihuApi zhihuApi = new ZhihuApi();
-        zhihuApi.getStartInfo(1080, 1776);
+        doGetStartInfo()
+                .subscribe(new AdvancedSubscriber<ZhihuStartInfo>() {
+                    @Override
+                    public void onHandleSuccess(ZhihuStartInfo response) {
+                        super.onHandleSuccess(response);
+                        update(response);
+                    }
+                });
         timeAsync = new TimeAsync();
     }
 
@@ -30,7 +49,7 @@ public class AppStartController extends BaseController {
 
     }
 
-    public void onEvent(ZhihuStartInfo zhihuStartInfo) {
+    public void update(final ZhihuStartInfo zhihuStartInfo) {
         mAppStart.setStartPic(zhihuStartInfo.getImg());
         mAppStart.setText(zhihuStartInfo.getText());
     }
@@ -55,5 +74,6 @@ public class AppStartController extends BaseController {
             super.onPostExecute(aVoid);
             mAppStart.startMain();
         }
+
     }
 }

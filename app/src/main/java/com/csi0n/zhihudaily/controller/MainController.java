@@ -3,7 +3,6 @@ package com.csi0n.zhihudaily.controller;
 import android.view.View;
 
 import com.csi0n.zhihudaily.ui.activity.Main;
-import com.csi0n.zhihudaily.utils.model.ZhihuLatest;
 
 /**
  * Created by chqss on 2016/2/27 0027.

@@ -2,10 +2,10 @@ package com.csi0n.zhihudaily.controller;
 
 import android.view.View;
 
-import com.csi0n.zhihudaily.api.ZhihuApi;
+import com.csi0n.zhihudaily.api.okhttp.ZhihuApiImpl;
 import com.csi0n.zhihudaily.ui.activity.ZhiHuDailyDetailActivity;
 import com.csi0n.zhihudaily.utils.HtmlUtil;
-import com.csi0n.zhihudaily.utils.model.ZhihuDetail;
+import com.csi0n.zhihudaily.utils.model.response.ZhihuDetail;
 
 /**
  * Created by chqss on 2016/2/27 0027.
@@ -18,8 +18,6 @@ public class ZhiHuDailyDetailController extends BaseController {
     }
 
     public void initZhiHuDailyDetail() {
-        ZhihuApi api = new ZhihuApi();
-        api.getZhihuDetail(mZhiHuDailyDetailActivity.getStories().getId());
     }
 
     @Override

@@ -1,4 +1,6 @@
-package com.csi0n.zhihudaily.utils.model;
+package com.csi0n.zhihudaily.utils.model.response;
+
+import com.csi0n.zhihudaily.utils.model.Stories;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +8,7 @@ import java.util.List;
 /**
  * Created by chqss on 2016/2/27 0027.
  */
-public class ZhihuLatest implements Serializable {
+public class ZhihuLatest extends BaseResponse {
     private String date;
     private List<Stories> stories;
     private List<Stories> top_stories;

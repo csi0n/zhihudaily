@@ -11,14 +11,15 @@ import android.view.ViewGroup;
 
 import com.csi0n.zhihudaily.utils.CLog;
 
-import org.xutils.x;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by chqss on 2016/2/27 0027.
  */
 public abstract class BaseFragment extends Fragment {
+    protected abstract int getFragmentLayout();
     protected abstract void initWidget();
-    private boolean injected = false;
     public FragmentActivity aty;
     protected BaseFragment currentFragment;
 
@@ -31,17 +32,15 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (!injected) {
-            x.view().inject(this, this.getView());
-        }
+        ButterKnife.bind(this, view);
         initWidget();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        injected = true;
-        return x.view().inject(this, inflater, container);
+        int layoutRes=getFragmentLayout();
+        return inflater.inflate(layoutRes,container,false);
     }
 
     @Override

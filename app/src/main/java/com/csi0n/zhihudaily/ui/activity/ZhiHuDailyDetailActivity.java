@@ -1,10 +1,8 @@
 package com.csi0n.zhihudaily.ui.activity;
-
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,39 +10,40 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.csi0n.zhihudaily.Config;
 import com.csi0n.zhihudaily.R;
 import com.csi0n.zhihudaily.controller.ZhiHuDailyDetailController;
 import com.csi0n.zhihudaily.utils.HtmlUtil;
 import com.csi0n.zhihudaily.utils.model.Stories;
-import com.csi0n.zhihudaily.utils.model.ZhihuDetail;
+import com.csi0n.zhihudaily.utils.model.response.ZhihuDetail;
 import com.squareup.picasso.Picasso;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.ViewInject;
+import butterknife.Bind;
 
 /**
  * Created by chqss on 2016/2/27 0027.
  */
-@ContentView(R.layout.aty_zhihu_daily_detail)
 public class ZhiHuDailyDetailActivity extends BaseActivity {
     private ZhiHuDailyDetailController mZhiHuDailyDetailController;
-    @ViewInject(value = R.id.wv_news)
-    private WebView mWvNews;
-    @ViewInject(value = R.id.iv_header)
-    private ImageView mImageView;
-    @ViewInject(value = R.id.tv_source)
-    private TextView mTvSource;
-    @ViewInject(value = R.id.collapsingToolbarLayout)
-    private CollapsingToolbarLayout mCollapsingToolbarLayout;
-    @ViewInject(value = R.id.toolbar)
-    private Toolbar mToolbar;
-    @ViewInject(value = R.id.nested_view)
-    private NestedScrollView mNestedScrollView;
+    @Bind(value = R.id.wv_news)
+     WebView mWvNews;
+    @Bind(value = R.id.iv_header)
+     ImageView mImageView;
+    @Bind(value = R.id.tv_source)
+     TextView mTvSource;
+    @Bind(value = R.id.collapsingToolbarLayout)
+     CollapsingToolbarLayout mCollapsingToolbarLayout;
+    @Bind(value = R.id.toolbar)
+     Toolbar mToolbar;
+    @Bind(value = R.id.nested_view)
+     NestedScrollView mNestedScrollView;
     private Stories stories;
+
+    @Override
+    protected void setRootView() {
+        setContentView(R.layout.aty_zhihu_daily_detail);
+    }
 
     @Override
     protected void initWidget() {

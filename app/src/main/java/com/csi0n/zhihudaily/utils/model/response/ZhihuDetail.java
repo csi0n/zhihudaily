@@ -1,4 +1,4 @@
-package com.csi0n.zhihudaily.utils.model;
+package com.csi0n.zhihudaily.utils.model.response;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by chqss on 2016/2/27 0027.
  */
-public class ZhihuDetail implements Serializable {
+public class ZhihuDetail extends BaseResponse {
     private String body;
     private String image_source;
     private String title;

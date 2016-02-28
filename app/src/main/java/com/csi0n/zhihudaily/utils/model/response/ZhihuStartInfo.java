@@ -1,11 +1,11 @@
-package com.csi0n.zhihudaily.utils.model;
+package com.csi0n.zhihudaily.utils.model.response;
 
 import java.io.Serializable;
 
 /**
  * Created by chqss on 2016/2/27 0027.
  */
-public class ZhihuStartInfo implements Serializable{
+public class ZhihuStartInfo extends BaseResponse {
     private String text;
     private String img;
 

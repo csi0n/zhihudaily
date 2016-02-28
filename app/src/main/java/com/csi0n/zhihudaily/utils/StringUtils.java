@@ -2,7 +2,8 @@ package com.csi0n.zhihudaily.utils;
 
 import android.support.annotation.StringRes;
 
-import org.xutils.x;
+
+import com.csi0n.zhihudaily.App;
 
 import java.text.SimpleDateFormat;
 
@@ -15,6 +16,6 @@ public class StringUtils {
         return df.format(new java.util.Date());
     }
     public static String getString(@StringRes int id) {
-        return x.app().getString(id);
+        return App.getApp.getString(id);
     }
 }

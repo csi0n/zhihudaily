@@ -12,12 +12,14 @@ import com.csi0n.zhihudaily.AppManager;
 import com.csi0n.zhihudaily.ui.fragment.BaseFragment;
 import com.csi0n.zhihudaily.utils.CLog;
 
-import org.xutils.x;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by chqss on 2016/2/27 0027.
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    protected abstract void setRootView();
     protected abstract void initWidget();
 
     public BaseActivity aty;
@@ -30,7 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             AppManager.getAppManager().AppExit(this);
         AppManager.getAppManager().addActivity(this);
         aty = this;
-        x.view().inject(this);
+        setRootView();
+        ButterKnife.bind(this);
         initWidget();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         CLog.iMessage(this.getClass().getName() + "**********onCreate**********");
@@ -89,10 +92,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         currentFragment = targetFragment;
         transaction.commit();
     }
+
     public void skipActivity(Context context, Class<?> classz) {
         startActivity(context, classz, null);
         aty.finish();
     }
+
     private void startActivity(Context context, Class<?> classz, Bundle bundle) {
         Intent intent = new Intent();
         intent.setClass(context, classz);
